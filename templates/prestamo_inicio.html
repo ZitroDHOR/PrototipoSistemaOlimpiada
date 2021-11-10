@@ -1,0 +1,152 @@
+<!DOCTYPE html> 
+<html lang="es">
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio - Administrador</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        
+        <div class = "container bg-primary mx-auto">
+            <div class="row">
+
+                <div class="col text-center"><h1>Registro de préstamos</h1></div>
+            </div>
+            <div class ="row">
+                <div class="col-3 ">
+                        
+                    <div class="row mt-3 mb-3">
+                        <div class="navbar bg-dark">
+                            <div class="navbar-nav mx-2 ">
+                                <div class="col">
+                                    <div class="row">
+        
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" aria-current="page" href="evento_inicio"><b>Registrar evento</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" href="#"><b>Préstamo</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" href="#"><b>Comisario</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row mb-3">
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" href="logout"><b>Cerrar sesion</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="col mx-auto text-center">
+                    
+                    <div class="row mt-3">
+                        <div class="col mx-auto">
+                            
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="container">
+                                        {% if sede_boolean == False %}
+                                        <form action="/prestamo_sede" method="POST">
+                                        {% elif sede_boolean == True and equipo_boolean == False %}
+                                        <form action="/prestamo_equipo" method="POST">
+                                        {% elif sede_boolean == True and equipo_boolean == True %}
+                                        <form action="/registra_prestamo" method="POST">
+                                        {% endif %}
+
+                                            <div class="row mx-auto">
+                                                {% if sede_boolean == True %}
+                                                <div class="col"><label><h4>Seleccione la sede:</h4></label></div>
+                                                <div class="col">
+                                                    <select name="sede">
+                                                        <!--Solo muestra la sede seleccionada anteriormente-->
+                                                        <option value="{{ sede[0] }}">{{ sede[1] }}, {{ sede[3] }}</option>
+                                                    </select> 
+                                                </div>
+                                                {% else %}
+                                                <div class="col"><label><h4>Seleccione la sede:</h4></label></div>
+                                                <div class="col">
+                                                    <select name="sede">
+                                                        <option disabled selected>Selecciona una sede...</option>
+                                                        {% for sede in lista_sedes %}
+                                                            <option value="{{ sede[0] }}">{{ sede[1] }}, {{ sede[3] }}</option>
+                                                        {% endfor %}
+                                                    </select> 
+                                                </div>
+                                                {%endif%}
+
+                                                <div class="row">
+                                                    <!--If para cargar el resto de la página según los datos que traiga de la sede-->
+                                                    {% if sede_boolean == True and equipo_boolean == False%}
+                                                        <div class="col"><label><h4>Seleccione un equipo:</h4></label></div>
+                                                        <div class="col">
+                                                            <select name="equipo">
+                                                                <option disabled selected>Selecciona un equipo...</option>
+                                                                {% for equipo in lista_equipos %}
+                                                                    <option value="{{ equipo[0] }}">{{ equipo[1] }}</option>
+                                                                {% endfor %}
+                                                            </select> 
+                                                            
+                                                        </div>
+                                                    {% elif sede_boolean == True and equipo_boolean == True %}
+                                                        <div class="col"><label><h4>Selecciona un equipo:</h4></label></div>
+                                                        <div class="col">
+                                                            <select name="equipo">
+                                                                <option value="{{ equipo[0] }}">{{ equipo[1] }}</option>
+                                                            </select> 
+                                                                
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col"><label><h4>Selecciona un tipo de préstamo:</h4></label></div>
+                                                            <div class="col">
+                                                                <select name="tipo_prestamo">
+                                                                    <option value="5">Préstamo evento</option>
+                                                                    <option value="6">Préstamo práctica</option>
+                                                                </select> 
+                                                                    
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    {% endif %}
+    
+                                                </div>
+
+                                            </div>
+                                            <div class="row mt-3 mb-3 mx-auto">
+                                                <div class="text-center mx-auto"><button class="btn btn-primary btn-block" type="submit">Enviar</button></div>
+                                            </div> 
+                                        </form>
+                                        
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

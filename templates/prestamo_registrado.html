@@ -1,0 +1,133 @@
+<!DOCTYPE html> 
+<html lang="es">
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio - Administrador</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        
+        <div class = "container bg-primary mx-auto">
+            <div class ="row">
+                <div class="col mx-auto text-center">
+                    <h1>Préstamo registrado!</h1>
+                </div>
+            <div class="row">
+                <div class="col-3 ">
+                        
+                    <div class="row mt-3 mb-3">
+                        <div class="navbar bg-dark">
+                            <div class="navbar-nav mx-2 ">
+                                <div class="col">
+                                    <div class="row">
+        
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" href="evento_inicio"><b>Registrar evento</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" href="#"><b>Préstamo</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" href="#"><b>Comisario</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row mb-3">
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" href="logout"><b>Cerrar sesion</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col mx-auto">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Consecutivo del préstamo registrado:</h5>                                    
+                                </div>
+                                <div class="col">
+                                    <h5>{{ prestamo_recibo[0]}}</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Estado del equipo:</h5>     
+                                </div>
+                                <div class="col">
+                                    <h5>{{ prestamo_recibo[1]}}</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Persona que realizó el préstamo:</h5>
+                                </div>
+                                <div class="col">
+                                    <h5>{{ nombre }} {{apellido}}</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Sede en la que se realizó el préstamo:</h5>
+                                </div>
+                                <div class="col">
+                                    <h5>{{ prestamo_recibo[2]}}</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Equipo prestado:</h5>
+                                </div>
+                                <div class="col">
+                                    <h5>{{ prestamo_recibo[3]}}</h5>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Consecutivo del inventario:</h5>
+                                </div>
+                                <div class="col">
+                                    <h5>{{ prestamo_recibo[4]}}</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <h5>Fecha en la que se realizó el préstamo:</h5>
+                                </div>
+                                <div class="col">
+                                    <h5>{{ prestamo_recibo[5]}}</h5>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html lang="es">
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registro</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        
+        <div class = "container bg-primary mx-auto">
+            <div class ="row">
+                <div class="col mx-auto text-center">
+                    <h1>¡Registrate!</h1>
+                </div>
+                
+            </div>
+            
+            <!--mt es el margen con respecto al top, mb con respecto al fondo-->
+            <div class="row">
+                <div class="col-6 mx-auto  mb-3">
+                    <div class="card card-body mt-3">
+                        <form action="/registro" method="POST">
+                            <div class="row mt-3">
+                                <div class="col"><label>Ingresa tu nombre: </label></div>
+                                <div class="col"><input type="text" name="nombre" placeholder ="Nombre..."></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col"> <label>Ingresa tu apellido: </label> </div>
+                                <div class="col"><input type="text" name="apellido" placeholder ="Apellido..."></div>
+                            </div>                        
+                            <div class="row mt-3">
+                                <div class="col"><label>Ingresa tu fecha de nacimiento</label></div>
+                                <div class="col"><input type="date" name="fecha_nacimiento"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col"><label>Ingresa tu correo electrónico</label></div>
+                                <div class="col"><input type="email" name="correo" placeholder="Correo..."></div>
+                            </div>
+                            
+                            <div class="row mx-auto mt-3">
+                                <div class="col-5 mx-auto"><button class="btn btn-primary btn-block" type="submit">Ingresar</button></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

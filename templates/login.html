@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html lang="es">
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ingreso Administrador</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        
+        <div class = "container bg-primary mx-auto">
+            <div class ="row">
+                <div class="col mx-auto text-center">
+                    <h1>Bienvenido administrador</h1>
+                    <h2>Por favor ingresa tu usuario y clave</h2>
+                </div>
+                
+            </div>
+            
+            <!--mt es el margen con respecto al top, mb con respecto al fondo-->
+            <div class="row">
+                <div class="col-6 mx-auto  mb-3">
+                    <div class="card card-body mt-3">
+                        <form action="solicita_ingreso" method="POST">
+
+                            <div class="row mt-3">
+                                <div class="col"><label>Ingresa tu usuario: </label></div>
+                                <div class="col"><input type="text" name="userper" placeholder ="Usuario..."></div>
+                            </div>
+                            
+                            <div class="row mt-3">
+                                <div class="col"><label>Ingresa tu contraseña: </label></div>
+                                <div class="col"><input type="password" name="password" placeholder ="Contraseña..."></div>
+                            </div>
+
+                            <div class="row mx-auto mt-3">
+                                <div class="col mx-auto text-center"><button class="btn btn-primary btn-block" type="submit">Ingresar</button></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

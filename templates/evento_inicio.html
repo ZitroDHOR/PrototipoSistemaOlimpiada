@@ -1,0 +1,209 @@
+<!DOCTYPE html> 
+<html lang="es">
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio - Administrador</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+    <body>
+        
+        <div class = "container bg-primary mx-auto">
+            <div class="row">
+
+                <div class="col text-center"><h1>Hola de nuevo, {{ nombre }} {{ apellido }}</h1></div>
+            </div>
+            <div class ="row">
+                <div class="col-3 ">
+                        
+                    <div class="row mt-3 mb-3">
+                        <div class="navbar bg-dark">
+                            <div class="navbar-nav mx-2 ">
+                                <div class="col">
+                                    <div class="row">
+        
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" aria-current="page" href="#"><b>Registrar evento</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" href="prestamo_inicio"><b>Préstamo</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" href="#"><b>Comisario</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row mb-3">
+                                        
+                                        <div class="col">
+                                            <a class="text-white nav-link active" href="logout"><b>Cerrar sesion</b></a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="col mx-auto text-center">
+                    
+                    <!--Llama para registrar la sede-->
+                    {% if sede_boolean == False %}
+                    <form action="/registra_sede" method="POST">
+                    <!--Llama para registrar el área-->
+                    {% elif sede_boolean == True and area_boolean == False  %}
+                    <form action="/registra_area" method="POST">
+                    <!--Llama para registrar el deporte-->
+                    {% elif sede_boolean == True and area_boolean == True and deporte_boolean == False %}
+                    <form action="/registra_deporte" method="POST">
+                    {% elif sede_boolean == True and area_boolean == True  and deporte_boolean == True%}
+                    <form action="/registra_evento" method="POST">
+                    {% endif %}
+                        <div class="row mt-3">
+                            <div class="col mx-auto">
+                                
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="container">
+                                            <div class="row">
+                                                <!--If que impide cambiar de sede cuando ya se cargaron las áreas-->
+                                                {% if sede_boolean == True %}
+                                                <div class="col"><label><h4>Seleccione la sede:</h4></label></div>
+                                                <div class="col">
+                                                    <select name="sede">
+                                                        <!--Solo muestra la sede seleccionada anteriormente-->
+                                                        <option value="{{ sede[0] }}">{{ sede[1] }}, {{ sede[3] }}</option>
+                                                    </select> 
+                                                </div>
+                                                {% else %}
+                                                <div class="col"><label><h4>Seleccione la sede:</h4></label></div>
+                                                <div class="col">
+                                                    <select name="sede">
+                                                        <option disabled selected>Selecciona una sede...</option>
+                                                        {% for sede in lista_sedes %}
+                                                            <option value="{{ sede[0] }}">{{ sede[1] }}, {{ sede[3] }}</option>
+                                                        {% endfor %}
+                                                    </select> 
+                                                </div>
+                                                {%endif%}
+                                            </div>
+
+                                            
+                                            <div class="row">
+                                                <!--If para cargar el resto de la página según los datos que traiga de la sede-->
+                                                {% if sede_boolean == True and area_boolean == False%}
+                                                    <div class="col"><label><h4>Seleccione el área:</h4></label></div>
+                                                    <div class="col">
+                                                        <select name="area">
+                                                            <option disabled selected>Selecciona un área...</option>
+                                                            {% for area in lista_areas %}
+                                                                <option value="{{ area[1] }}">{{ area[2] }}, {{ area[3] }}</option>
+                                                            {% endfor %}
+                                                        </select> 
+                                                        
+                                                    </div>
+                                                {% elif sede_boolean == True and area_boolean == True %}
+                                                    <div class="col"><label><h4>Seleccione el área:</h4></label></div>
+                                                        <div class="col">
+                                                            <select name="area">
+                                                                <option value="{{ area[1] }}">{{ area[2] }}, {{ area[3] }}</option>
+                                                            </select> 
+                                                            
+                                                    </div>
+                                                {% endif %}
+
+                                            </div>
+
+
+                                            <div class="row">
+                                                <!--If para cargar el resto de la página según los datos que traiga de la sede-->
+                                                {% if area_boolean == True and deporte_boolean == False%}
+                                                    <div class="col"><label><h4>Seleccione el deporte:</h4></label></div>
+                                                    <div class="col">
+                                                        <select name="deporte">
+                                                            <option disabled selected>Selecciona deporte...</option>
+                                                            {% for deporte in lista_deportes %}
+                                                                <option value="{{ deporte[0] }}">{{ deporte[1] }}</option>
+                                                            {% endfor %}
+                                                        </select> 
+                                                        
+                                                    </div>
+                                                {% elif area_boolean == True and deporte_boolean == True %}
+                                                    <div class="col"><label><h4>Seleccione el área:</h4></label></div>
+                                                        <div class="col">
+                                                            <select name="deporte">
+                                                                <option value="{{ deporte[0] }}">{{ deporte[1] }}</option>
+                                                            </select> 
+                                                            
+                                                    </div>
+                                                {% endif %}
+
+                                                {% if deporte_boolean == True %}
+                                                    <div class="row">
+                                                        <div class="col"><label><h4>Seleccione la fecha:</h4></label></div>
+                                                        <div class="col">
+                                                            <input name="fecha" type="date" min="2021-10-06">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col"><label><h4>Seleccione la hora:</h4></label></div>
+                                                        <div class="col">
+                                                            <input name="hora" type="time">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col"><label><h4>Digite la duración del evento (En minutos):</h4></label></div>
+                                                        <div class="col">
+                                                            <input name="duracion" type="number">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col"><label><h4>Digite la cantidad de personas que participarán en el evento:</h4></label></div>
+                                                        <div class="col">
+                                                            <input name="nparticipante" type="number">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                {% endif %}
+                                                
+
+                                               
+                                                <div class="row mt-3 mb-3">
+                                                    <div class="text-center mx-auto"><button class="btn btn-primary btn-block" type="submit">Enviar</button></div>
+                                                </div>  
+                                                
+                                                
+                                            
+                                            </div>
+                                                
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
